@@ -1,0 +1,11 @@
+// Configuration for TypeScript
+{
+  "extends": "./node_modules/astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ]
+}
