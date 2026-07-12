@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE_DATA } from '../constants';
 import cvData from '../data/cv.json';
 
 import '../styles/publications.css';
@@ -179,6 +180,35 @@ const categories = [...new Set(cvData.map(e => e.category))];
                 </div>
             )}
         </div>
+        <section>
+                <h2>CV</h2>
+                <div class="info-card">
+                    <p>
+                        For a full curriculum vitae, see my LinkedIn profile.
+                    </p>
+                    <a href={SITE_DATA.linkedin}
+                       class="info-card-link"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Visit my LinkedIn profile">
+                        <svg viewBox="0 0 24 24" width="60" height="60" fill="currentColor">
+                            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25a1.75 1.75 0 110-3.5 1.75 1.75 0 010 3.5zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.4 1.08 3.4 3.93z"></path>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <p>
+                    Collaboration enquiries, methodology debates, and Monoceros Initiative questions are welcome via
+                    <a href={`mailto:${SITE_DATA.email}`}>e-mail</a> or
+                    <a href={SITE_DATA.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+                    Specific enquiries get specific replies. Generic partnership pitches are recycled with great
+                    efficiency.
+                </p>
+            </section>
     </div>
 </Layout>
 
