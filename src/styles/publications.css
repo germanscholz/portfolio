@@ -543,3 +543,80 @@
         min-width: max-content;
     }
 }
+
+/* ==========================================================================
+   CV Specific Styles
+   ========================================================================== */
+
+.cv-section {
+    margin-bottom: 3rem;
+}
+
+.cv-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border);
+    color: var(--color-primary);
+}
+
+.cv-highlights {
+    margin: 0.75rem 0 0 0;
+    padding-left: 1.2rem;
+    list-style: none;
+}
+
+.cv-highlights li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.cv-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+}
+
+.publication-card.expanded .cv-highlights {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.skill-tag {
+    padding: 0.45rem 1rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+
+@media (hover: hover) {
+    .skill-tag:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+    }
+}
+
+.skill-tag:active {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}

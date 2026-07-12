@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "category": "experience",
+    "title": "Assembly Director (Primary Role)",
+    "organization": "TAV Ingenieria S.A.",
+    "location": "Santo Tomé, Santa Fe, Argentina",
+    "startDate": 2006,
+    "endDate": null,
+    "current": true,
+    "description": "Coordination and planning for the assembly and commissioning of industrial plants and diverse equipment for the food industry. The primary goal was the implementation of ISO 9001 standards. Working in collaboration with an external consulting firm, I led the generation of all standard-required documentation, as well as the implementation and systematization of new work methods and procedures.",
+    "highlights": [
+      "Internal and external organization and management of supplies and materials.",
+      "Production monitoring and oversight.",
+      "Post-sales service and customer support",
+      "Preparation of budgets and commercial proposals.",
+      "Preparation of packing lists for the export of complete plants and various equipment.",
+      "Coordination and logistics for cargo loading and transport to destination ports."
+    ]
+  },
+  {
+    "id": 2,
+    "category": "experience",
+    "title": "Quality Engineer / Quality Specialist",
+    "organization": "Basso S.A.",
+    "location": "Rafaela, Santa Fe, Argentina",
+    "startDate": 2004,
+    "endDate": 2006,
+    "current": false,
+    "description": "Performance Sector: Quality. Responsible for quality system documentation management, statistical process control, and ISO certifications.",
+    "highlights": [
+      "Managed quality management system documentation.",
+      "Analyzed in-process data and generated key performance indicators and reports (Statistical Process Control - SPC).",
+      "Responsible for generating and updating client-required documentation.",
+      "Led the implementation of the quality system and the ISO 9001 certification at the Motor Parts S.A. factory (a subsidiary of Basso S.A.).",
+      "Handled and applied ISO 9001 and ISO/TS 16949 standards."
+    ]
+  },
+  {
+    "id": 3,
+    "category": "experience",
+    "title": "Production Engineer / Production Specialist",
+    "organization": "S.A.G.Y.D. S.A.",
+    "location": "Cañada Rosquín, Santa Fe, Argentina",
+    "startDate": 2004,
+    "endDate": 2004,
+    "current": false,
+    "description": "Performance Sector: Production. Focused on warehouse management optimization, purchasing procedures, cost analysis, and pricing strategies.",
+    "highlights": [
+      "Improved warehouse and purchasing management and procedures.",
+      "Conducted cost analysis and determined pricing strategies."
+    ]
+  },
+  {
+    "id": 4,
+    "category": "experience",
+    "title": "Assistant Bar Manager / Bartender Manager",
+    "organization": "Aerodrome Hotel",
+    "location": "Croydon, London, England",
+    "startDate": 2002,
+    "endDate": 2003,
+    "current": false,
+    "description": "Worked as an Assistant Manager primarily across the bar, restaurant, and kitchen areas. Initially started as a waiter/bartender, thereby gaining a comprehensive overview of the operations.",
+    "highlights": [
+      "Promoted from waiter/bartender to Assistant Manager, gaining a comprehensive overview of hotel food and beverage operations.",
+      "Coordinated and supervised daily activities across the bar, restaurant, and kitchen areas.",
+      "Assisted in staff management, customer service, and operational workflow optimization."
+    ]
+  },
+  {
+    "id": 5,
+    "category": "experience",
+    "title": "Administrative Assistant / Warehouse Administrator",
+    "organization": "E.S. Castell-llac, S.L",
+    "location": "Castelldefels, Barcelona, Spain",
+    "startDate": 2002,
+    "endDate": 2002,
+    "current": false,
+    "description": "Worked in the warehouse management department, supporting workshop operations and fueling logistics.",
+    "highlights": [
+      "Managed administration and logistics within the warehouse management department.",
+      "Supported operational workflows for workshop activities and fueling services.",
+      "Organized and kept track of internal inventory and facility documentation."
+    ]
+  },
+  {
+    "id": 6,
+    "category": "education",
+    "title": "Master of Business Administration (MBA)",
+    "organization": "Facultad de Ciencias Económicas – Universidad Nacional del Litoral",
+    "location": "Santa Fe, Argentina",
+    "startDate": 2006,
+    "endDate": 2008,
+    "current": false,
+    "description": "Master's Degree (Magister) in Business Administration and Management.",
+    "highlights": [
+      "Comprehensive training in strategic management, corporate finance, and business administration.",
+      "Developed advanced skills in leadership, organizational development, and industrial operations management."
+    ]
+  },
+  {
+    "id": 7,
+    "category": "education",
+    "title": "Bachelor of Science (B.S.) in Industrial Engineering",
+    "organization": "Facultad de Ciencias Exactas, Ingeniería y Agrimensura – Universidad Nacional de Rosario",
+    "location": "Rosario, Santa Fe, Argentina",
+    "startDate": 1995,
+    "endDate": 2002,
+    "current": false,
+    "description": "Professional Degree / Higher Education in Industrial Engineering.",
+    "highlights": [
+      "Skills / Aptitudes: Logistics, Design for Manufacturing and Assembly (DFMA).",
+      "Acquired a solid foundation in manufacturing processes, operations research, and supply chain management."
+    ]
+  },
+  {
+    "id": 8,
+    "category": "education",
+    "title": "Master of Business Administration (MBA)",
+    "organization": "Facultad de Ciencias Económicas – Universidad Nacional del Litoral",
+    "location": "Santa Fe, Argentina",
+    "startDate": 2006,
+    "endDate": 2008,
+    "current": false,
+    "description": "Master's Degree (Magister) in Business Administration and Management.",
+    "highlights": [
+      "Comprehensive training in strategic management, corporate finance, and business administration.",
+      "Developed advanced skills in leadership, organizational development, and industrial operations management."
+    ]
+  },
+  {
+    "id": 9,
+    "category": "skills",
+    "title": "Skills and Competencies",
+    "organization": "",
+    "location": "",
+    "startDate": null,
+    "endDate": null,
+    "current": false,
+    "description": "Core technical and managerial competencies developed across industrial engineering, international plant commissioning, quality management, and operations.",
+    "highlights": [
+      "Industrial Production Management & Plant Commissioning",
+      "Quality Management Systems (ISO 9001, ISO/TS 16949 Standards)",
+      "Statistical Process Control (SPC) & Quality Auditing",
+      "Logistics, Supply Chain, & Foreign Trade (Customs, Packing Lists, Shipping)",
+      "Design for Manufacturing and Assembly (DFMA) & Detailed Engineering Drawing",
+      "International Project Management & Cross-Cultural Team Leadership",
+      "Cost Analysis, Budgeting, & Post-Sales Commercial Support",
+      "Technical Tools: AutoCAD, SAP, Microsoft Office Suite"
+    ]
+  }
+]

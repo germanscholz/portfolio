@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro';
+import cvData from '../data/cv.json';
+
+import '../styles/publications.css';
+
+const experienceEntries = cvData.filter(e => e.category === 'experience');
+const educationEntries = cvData.filter(e => e.category === 'education');
+const skillsEntry = cvData.find(e => e.category === 'skills');
+
+const allYears = cvData
+  .filter(e => e.startDate)
+  .flatMap(e => [e.startDate, e.endDate].filter(Boolean));
+const minYear = Math.min(...allYears);
+const maxYear = Math.max(...allYears);
+
+const categories = [...new Set(cvData.map(e => e.category))];
+---
+
+<Layout pageTitle="Curriculum">
+    <div class="page-container">
+        <h1>Curriculum</h1>
+
+        <div class="publications-section">
+            <!-- Controls -->
+            <div class="controls-wrapper">
+                <button class="controls-toggle-btn" id="controls-toggle" aria-expanded="false" aria-label="Toggle filters">
+                    <span class="toggle-label">Filtros</span>
+                    <svg class="toggle-arrow" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </button>
+                <div class="controls-container collapsed" id="controls-container">
+                <!-- Search -->
+                <div class="control-section">
+                    <label class="section-label">Buscar</label>
+                    <input
+                        type="text"
+                        id="search-input"
+                        class="search-input"
+                        placeholder="Palabras clave (separadas por coma)"
+                    />
+                </div>
+
+                <!-- Filters Row -->
+                <div class="filters-row">
+                    <!-- Sort -->
+                    <div class="control-section">
+                        <label class="section-label">Ordenar</label>
+                        <div class="sort-buttons">
+                            <button class="sort-btn active" data-sort="year-desc">Más reciente</button>
+                            <button class="sort-btn" data-sort="year-asc">Más antiguo</button>
+                            <button class="sort-btn" data-sort="title">A-Z</button>
+                        </div>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="control-section">
+                        <label class="section-label">Categoría</label>
+                        <div class="type-filters">
+                            <button class="filter-chip active" data-category="all">Todos</button>
+                            <button class="filter-chip" data-category="experience">Experiencia</button>
+                            <button class="filter-chip" data-category="education">Formación</button>
+                            {skillsEntry && (
+                                <button class="filter-chip" data-category="skills">Habilidades</button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Year Range -->
+                <div class="control-section">
+                    <label class="section-label">Rango de Años</label>
+                    <div class="year-slider-container">
+                        <input type="range" id="year-min" class="year-slider" min={minYear} max={maxYear} value={minYear} />
+                        <input type="range" id="year-max" class="year-slider" min={minYear} max={maxYear} value={maxYear} />
+                        <div class="year-track"></div>
+                        <div class="year-labels">
+                            <span id="year-min-label">{minYear}</span>
+                            <span id="year-max-label">{maxYear}</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Results Count -->
+            <div class="results-info">
+                Mostrando <span id="results-count">{cvData.length}</span> de {cvData.length} entradas
+            </div>
+
+            <!-- Experience Section -->
+            <div class="cv-section" data-section="experience">
+                <h2 class="cv-section-title">Experiencia Laboral</h2>
+                <div class="publications-list" id="experience-list">
+                    {experienceEntries.map((entry, index) => (
+                        <article
+                            class={`publication-card ${entry.description ? 'has-abstract' : ''}`}
+                            data-cv-id={entry.id}
+                            data-year={entry.startDate || 0}
+                            data-end-year={entry.endDate || 9999}
+                            data-title={entry.title.toLowerCase()}
+                            data-org={entry.organization.toLowerCase()}
+                            data-location={entry.location.toLowerCase()}
+                            data-description={(entry.description || '').toLowerCase()}
+                            data-highlights={(entry.highlights || []).join(' ').toLowerCase()}
+                            data-category={entry.category}
+                            style={`--delay: ${Math.min(index * 0.02, 0.6)}s`}
+                        >
+                            <div class="pub-number">{index + 1}</div>
+                            <div class="pub-content">
+                                <h3 class="pub-title">{entry.title}</h3>
+                                <p class="pub-authors">{entry.organization}{entry.location ? ` — ${entry.location}` : ''}</p>
+                                <div class="pub-meta">
+                                    <span class="pub-year">{entry.startDate}{entry.endDate ? ` – ${entry.endDate}` : ' – Presente'}</span>
+                                    {entry.current && (
+                                        <span class="pub-type">Actual</span>
+                                    )}
+                                </div>
+                                {entry.description && (
+                                    <div class="pub-abstract">{entry.description}</div>
+                                )}
+                                {entry.highlights && entry.highlights.length > 0 && (
+                                    <ul class="cv-highlights">
+                                        {entry.highlights.map(h => (
+                                            <li>{h}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="cv-section" data-section="education">
+                <h2 class="cv-section-title">Historial Académico</h2>
+                <div class="publications-list" id="education-list">
+                    {educationEntries.map((entry, index) => (
+                        <article
+                            class={`publication-card ${entry.description ? 'has-abstract' : ''}`}
+                            data-cv-id={entry.id}
+                            data-year={entry.startDate || 0}
+                            data-end-year={entry.endDate || 9999}
+                            data-title={entry.title.toLowerCase()}
+                            data-org={entry.organization.toLowerCase()}
+                            data-location={entry.location.toLowerCase()}
+                            data-description={(entry.description || '').toLowerCase()}
+                            data-highlights={(entry.highlights || []).join(' ').toLowerCase()}
+                            data-category={entry.category}
+                            style={`--delay: ${Math.min(index * 0.02, 0.6)}s`}
+                        >
+                            <div class="pub-number">{index + 1}</div>
+                            <div class="pub-content">
+                                <h3 class="pub-title">{entry.title}</h3>
+                                <p class="pub-authors">{entry.organization}{entry.location ? ` — ${entry.location}` : ''}</p>
+                                <div class="pub-meta">
+                                    <span class="pub-year">{entry.startDate}{entry.endDate ? ` – ${entry.endDate}` : ''}</span>
+                                </div>
+                                {entry.description && (
+                                    <div class="pub-abstract">{entry.description}</div>
+                                )}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            {skillsEntry && skillsEntry.highlights.length > 0 && (
+                <div class="cv-section" data-section="skills">
+                    <h2 class="cv-section-title">Habilidades</h2>
+                    <div class="skills-grid">
+                        {skillsEntry.highlights.map(skill => (
+                            <span class="skill-tag">{skill}</span>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const cards = document.querySelectorAll('.publication-card');
+    let currentSort = 'year-desc';
+    let currentCategory = 'all';
+    let searchKeywords = [];
+    let yearMin = parseInt(document.getElementById('year-min').getAttribute('min'));
+    let yearMax = parseInt(document.getElementById('year-max').getAttribute('max'));
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', (e) => {
+        const value = e.target.value.toLowerCase().trim();
+        searchKeywords = value ? value.split(',').map(k => k.trim()).filter(k => k) : [];
+        filterAndSort();
+    });
+
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSort = btn.dataset.sort;
+            filterAndSort();
+        });
+    });
+
+    document.querySelectorAll('.type-filters .filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('.type-filters .filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            currentCategory = chip.dataset.category;
+            filterAndSort();
+        });
+    });
+
+    const yearMinSlider = document.getElementById('year-min');
+    const yearMaxSlider = document.getElementById('year-max');
+    const yearMinLabel = document.getElementById('year-min-label');
+    const yearMaxLabel = document.getElementById('year-max-label');
+
+    function updateSliderZIndex() {
+        if (yearMin === yearMax) {
+            yearMinSlider.style.zIndex = '4';
+            yearMaxSlider.style.zIndex = '3';
+        } else {
+            yearMinSlider.style.zIndex = '2';
+            yearMaxSlider.style.zIndex = '3';
+        }
+    }
+
+    yearMinSlider.addEventListener('mousedown', () => { yearMinSlider.style.zIndex = '5'; });
+    yearMinSlider.addEventListener('mouseup', () => { updateSliderZIndex(); });
+    yearMaxSlider.addEventListener('mousedown', () => { yearMaxSlider.style.zIndex = '5'; });
+    yearMaxSlider.addEventListener('mouseup', () => { updateSliderZIndex(); });
+
+    yearMinSlider.addEventListener('input', (e) => {
+        yearMin = Math.min(parseInt(e.target.value), yearMax);
+        yearMinLabel.textContent = yearMin;
+        updateSliderZIndex();
+        filterAndSort();
+    });
+
+    yearMaxSlider.addEventListener('input', (e) => {
+        yearMax = Math.max(parseInt(e.target.value), yearMin);
+        yearMaxLabel.textContent = yearMax;
+        updateSliderZIndex();
+        filterAndSort();
+    });
+
+    updateSliderZIndex();
+
+    document.addEventListener('click', (e) => {
+        const card = e.target.closest('.publication-card.has-abstract');
+        if (card) {
+            card.classList.toggle('expanded');
+        }
+    });
+
+    function filterAndSort() {
+        const cardsArray = Array.from(cards);
+
+        const filtered = cardsArray.filter(card => {
+            const year = parseInt(card.dataset.year);
+            const endYear = parseInt(card.dataset.endYear);
+            const category = card.dataset.category;
+            const searchText = [
+                card.dataset.title,
+                card.dataset.org,
+                card.dataset.location,
+                card.dataset.description,
+                card.dataset.highlights,
+                card.dataset.year
+            ].join(' ');
+
+            if (category !== currentCategory && currentCategory !== 'all') return false;
+
+            const matchesYear = (year >= yearMin && year <= yearMax) ||
+                                 (endYear >= yearMin && endYear <= yearMax) ||
+                                 (year <= yearMin && endYear >= yearMax);
+            if (!matchesYear) return false;
+
+            if (searchKeywords.length > 0) {
+                const allMatch = searchKeywords.every(kw => searchText.includes(kw));
+                if (!allMatch) return false;
+            }
+
+            return true;
+        });
+
+        filtered.sort((a, b) => {
+            switch (currentSort) {
+                case 'year-desc':
+                    return parseInt(b.dataset.year) - parseInt(a.dataset.year);
+                case 'year-asc':
+                    return parseInt(a.dataset.year) - parseInt(b.dataset.year);
+                case 'title':
+                    return a.dataset.title.localeCompare(b.dataset.title);
+                default:
+                    return 0;
+            }
+        });
+
+        document.querySelectorAll('.cv-section').forEach(sec => {
+            sec.style.display = 'none';
+        });
+
+        cardsArray.forEach(card => {
+            card.style.display = 'none';
+            card.classList.remove('visible');
+        });
+
+        const sectionMap = { experience: 'experience-list', education: 'education-list' };
+
+        filtered.forEach((card, index) => {
+            card.style.display = 'flex';
+            card.querySelector('.pub-number').textContent = index + 1;
+            setTimeout(() => card.classList.add('visible'), 10);
+
+            const sectionId = sectionMap[card.dataset.category];
+            if (sectionId) {
+                document.getElementById(sectionId).appendChild(card);
+            }
+        });
+
+        document.querySelectorAll('.cv-section').forEach(sec => {
+            const sectionCategory = sec.dataset.section;
+            if (currentCategory === 'all' || currentCategory === sectionCategory) {
+                const list = sec.querySelector('.publications-list');
+                if (list && list.children.length > 0) {
+                    sec.style.display = '';
+                }
+            }
+        });
+
+        const skillsSection = document.querySelector('.cv-section[data-section="skills"]');
+        if (skillsSection && (currentCategory === 'all' || currentCategory === 'skills')) {
+            skillsSection.style.display = '';
+        }
+
+        document.getElementById('results-count').textContent = filtered.length;
+    }
+
+    const controlsToggle = document.getElementById('controls-toggle');
+    const controlsContainer = document.getElementById('controls-container');
+
+    controlsToggle.addEventListener('click', () => {
+        const isExpanded = controlsToggle.getAttribute('aria-expanded') === 'true';
+        controlsToggle.setAttribute('aria-expanded', !isExpanded);
+        controlsContainer.classList.toggle('collapsed');
+    });
+
+    filterAndSort();
+</script>
