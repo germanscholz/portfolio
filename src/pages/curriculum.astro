@@ -26,7 +26,7 @@ const categories = [...new Set(cvData.map(e => e.category))];
             <!-- Controls -->
             <div class="controls-wrapper">
                 <button class="controls-toggle-btn" id="controls-toggle" aria-expanded="false" aria-label="Toggle filters">
-                    <span class="toggle-label">Filtros</span>
+                    <span class="toggle-label">Filters</span>
                     <svg class="toggle-arrow" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
                         <path d="M7 10l5 5 5-5z"/>
                     </svg>
@@ -34,12 +34,12 @@ const categories = [...new Set(cvData.map(e => e.category))];
                 <div class="controls-container collapsed" id="controls-container">
                 <!-- Search -->
                 <div class="control-section">
-                    <label class="section-label">Buscar</label>
+                    <label class="section-label">Search</label>
                     <input
                         type="text"
                         id="search-input"
                         class="search-input"
-                        placeholder="Palabras clave (separadas por coma)"
+                        placeholder="Keywords (comma-separated)"
                     />
                 </div>
 
@@ -47,23 +47,23 @@ const categories = [...new Set(cvData.map(e => e.category))];
                 <div class="filters-row">
                     <!-- Sort -->
                     <div class="control-section">
-                        <label class="section-label">Ordenar</label>
+                        <label class="section-label">Sort</label>
                         <div class="sort-buttons">
-                            <button class="sort-btn active" data-sort="year-desc">Más reciente</button>
-                            <button class="sort-btn" data-sort="year-asc">Más antiguo</button>
+                            <button class="sort-btn active" data-sort="year-desc">Most recent</button>
+                            <button class="sort-btn" data-sort="year-asc">Oldest</button>
                             <button class="sort-btn" data-sort="title">A-Z</button>
                         </div>
                     </div>
 
                     <!-- Category -->
                     <div class="control-section">
-                        <label class="section-label">Categoría</label>
+                        <label class="section-label">Category</label>
                         <div class="type-filters">
-                            <button class="filter-chip active" data-category="all">Todos</button>
-                            <button class="filter-chip" data-category="experience">Experiencia</button>
-                            <button class="filter-chip" data-category="education">Formación</button>
+                            <button class="filter-chip active" data-category="all">All</button>
+                            <button class="filter-chip" data-category="experience">Experience</button>
+                            <button class="filter-chip" data-category="education">Education</button>
                             {skillsEntry && (
-                                <button class="filter-chip" data-category="skills">Habilidades</button>
+                                <button class="filter-chip" data-category="skills">Skills</button>
                             )}
                         </div>
                     </div>
@@ -71,7 +71,7 @@ const categories = [...new Set(cvData.map(e => e.category))];
 
                 <!-- Year Range -->
                 <div class="control-section">
-                    <label class="section-label">Rango de Años</label>
+                    <label class="section-label">Year Range</label>
                     <div class="year-slider-container">
                         <input type="range" id="year-min" class="year-slider" min={minYear} max={maxYear} value={minYear} />
                         <input type="range" id="year-max" class="year-slider" min={minYear} max={maxYear} value={maxYear} />
@@ -87,12 +87,12 @@ const categories = [...new Set(cvData.map(e => e.category))];
 
             <!-- Results Count -->
             <div class="results-info">
-                Mostrando <span id="results-count">{cvData.length}</span> de {cvData.length} entradas
+                Showing <span id="results-count">{cvData.length}</span> of {cvData.length} entries
             </div>
 
             <!-- Experience Section -->
             <div class="cv-section" data-section="experience">
-                <h2 class="cv-section-title">Experiencia Laboral</h2>
+                <h2 class="cv-section-title">Work Experience</h2>
                 <div class="publications-list" id="experience-list">
                     {experienceEntries.map((entry, index) => (
                         <article
@@ -113,9 +113,9 @@ const categories = [...new Set(cvData.map(e => e.category))];
                                 <h3 class="pub-title">{entry.title}</h3>
                                 <p class="pub-authors">{entry.organization}{entry.location ? ` — ${entry.location}` : ''}</p>
                                 <div class="pub-meta">
-                                    <span class="pub-year">{entry.startDate}{entry.endDate ? ` – ${entry.endDate}` : ' – Presente'}</span>
+                                    <span class="pub-year">{entry.startDate}{entry.endDate ? ` – ${entry.endDate}` : ' – Present'}</span>
                                     {entry.current && (
-                                        <span class="pub-type">Actual</span>
+                                        <span class="pub-type">Current</span>
                                     )}
                                 </div>
                                 {entry.description && (
@@ -136,7 +136,7 @@ const categories = [...new Set(cvData.map(e => e.category))];
 
             <!-- Education Section -->
             <div class="cv-section" data-section="education">
-                <h2 class="cv-section-title">Historial Académico</h2>
+                <h2 class="cv-section-title">Academic History</h2>
                 <div class="publications-list" id="education-list">
                     {educationEntries.map((entry, index) => (
                         <article
@@ -171,7 +171,7 @@ const categories = [...new Set(cvData.map(e => e.category))];
             <!-- Skills Section -->
             {skillsEntry && skillsEntry.highlights.length > 0 && (
                 <div class="cv-section" data-section="skills">
-                    <h2 class="cv-section-title">Habilidades</h2>
+                    <h2 class="cv-section-title">Skills</h2>
                     <div class="skills-grid">
                         {skillsEntry.highlights.map(skill => (
                             <span class="skill-tag">{skill}</span>
